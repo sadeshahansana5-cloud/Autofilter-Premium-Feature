@@ -31,12 +31,12 @@ INDEX_CAPTION = bool(environ.get('SAVE_CAPTION', True)) # Save caption db when i
 #Making it false will not save caption in db SO you can save some storage space
 
 
-PICS = (environ.get('PICS', 'https://i.imgur.com/y0l9yQA.png https://i.imgur.com/oHSS8CU.png')).split()  # Sample pic
-NOR_IMG = environ.get("NOR_IMG", "https://i.imgur.com/y0l9yQA.png")
-MELCOW_PHOTO = environ.get("MELCOW_PHOTO", "https://i.imgur.com/y0l9yQA.png")
-SPELL_IMG = environ.get("SPELL_IMG", "https://i.imgur.com/y0l9yQA.png")
-SUBSCRIPTION = (environ.get('SUBSCRIPTION', 'https://i.imgur.com/y0l9yQA.png'))
-FSUB_PICS = (environ.get('FSUB_PICS', 'https://i.imgur.com/oHSS8CU.png https://i.imgur.com/y0l9yQA.png')).split()  # Fsub pic
+PICS = (environ.get('PICS', 'https://t.me/shprofilterupdate/300 https://t.me/shprofilterupdate/301 https://t.me/shprofilterupdate/302')).split()  # Sample pic
+NOR_IMG = environ.get("NOR_IMG", "https://t.me/shprofilterupdate/300")
+MELCOW_PHOTO = environ.get("MELCOW_PHOTO", "https://t.me/shprofilterupdate/300")
+SPELL_IMG = environ.get("SPELL_IMG", "https://t.me/shprofilterupdate/302")
+SUBSCRIPTION = (environ.get('SUBSCRIPTION', 'https://t.me/shprofilterupdate/301'))
+FSUB_PICS = (environ.get('FSUB_PICS', 'https://t.me/shprofilterupdate/301')).split()  # Fsub pic
 
 # ============================
 # Admin, Channels & Users Configuration
