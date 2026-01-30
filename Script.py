@@ -143,13 +143,15 @@ Nᴀᴍᴇ - {}
 
     DEL_MSG = """⚠️ ᴛʜɪꜱ ᴍᴏᴠɪᴇ ꜰɪʟᴇ/ᴠɪᴅᴇᴏ ᴡɪʟʟ ʙᴇ ᴅᴇʟᴇᴛᴇᴅ ɪɴ <b><u><code>{}</code></u></b>
 
-⚠️ මෙම චිත්‍රපට ෆයිල් / වීඩියෝ එක <b><u><code>{}</code></u></b> තුළ මකා දමනු ලැබේ.
+⚠️ මෙම Movie File / Video එක Auto Delete වෙනවා.
 
-<blockquote expandable><b><i>
+<blockquote expandable>
+<b><i>
 ᴘʟᴇᴀꜱᴇ ꜰᴏʀᴡᴀʀᴅ ᴛʜɪꜱ ꜰɪʟᴇ ᴛᴏ ꜱᴏᴍᴇᴡʜᴇʀᴇ ᴇʟꜱᴇ & ꜱᴛᴀʀᴛ ᴅᴏᴡɴʟᴏᴀᴅɪɴɢ ᴛʜᴇʀᴇ  
 
-කරුණාකර මෙම ෆයිල් එක වෙනත් ස්ථානයකට යොමු කර එහි download කිරීම ආරම්භ කරන්න
-</i></b></blockquote>
+කරුණාකර මෙම File එක වෙනත් තැනකට Forward කර Download එක Start කරන්න
+</i></b>
+</blockquote>
 """
 
 
