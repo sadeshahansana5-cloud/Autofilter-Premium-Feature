@@ -224,7 +224,7 @@ Nᴀᴍᴇ : {}
 
 Mᴇꜱꜱᴀɢᴇ : <b>{}</b>"""
     
-    CAPTION = """<b><a href="https://t.me/shprofilterupdate">{file_name}</a></b>\n\n<b>📦File Size : {file_size}<\b>\n\n<b>⚜️ Powered By : <a href="https://t.me/shprofilterupdate">[ SH Pro Update ]</a></b>"""
+    CAPTION = """<b><a href="https://t.me/shprofilterupdate">{file_name}</a></b>\n\n<b>📦File Size : {file_size}</b>\n\n<b>⚜️ Powered By : <a href="https://t.me/shprofilterupdate">[ SH Pro Update ]</a></b>"""
 
     
     MOVIE_UPDATE_NOTIFY_TXT = """
