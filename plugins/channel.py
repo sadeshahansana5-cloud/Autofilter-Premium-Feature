@@ -418,7 +418,7 @@ async def update_movie_message(bot, base_name):
     except Exception as e:
         logger.error(f"Failed to update movie message: {e}")
 
-def generate_movie_message(movie_doc, base_name):
+ def generate_movie_message(movie_doc, base_name):
     all_qualities = set()
     all_languages = set()
     all_ott_platforms = set()
@@ -441,58 +441,69 @@ def generate_movie_message(movie_doc, base_name):
             episodes_by_season[season].add(episode)
 
     primary_tag = "#SERIES" if "#SERIES" in all_tags else "#MOVIE"
-    epi_block = ""
+    
+    # පණිවිඩය සෑදීම ආරම්භය
+    poster_url = movie_doc.get("poster_url", "")
+    imdb_url = movie_doc.get("imdb_url", "")
+    
+    # Title එකට IMDb link එක සහ Poster එක එකතු කිරීම
+    text = f"📥 <b>New {primary_tag} Added</b>\n\n"
+    text += f"<blockquote><a href='{poster_url}'>🎬</a> <a href='{imdb_url}'>✨ ᴛɪᴛʟᴇ : </a><code>{base_name}</code>\n\n"
+
+    # Genres තිබේ නම් පමණක්
+    genres = movie_doc.get("genres", "N/A")
+    if genres != "N/A":
+        text += f"🎭 ɢᴇɴʀᴇs : <b>{genres}</b>\n"
+
+    # OTT තිබේ නම් පමණක්
+    ott_str = ", ".join(sorted(all_ott_platforms)) if all_ott_platforms else "N/A"
+    if ott_str != "N/A":
+        text += f"📺 ᴏᴛᴛ : <b>{ott_str}</b>\n"
+
+    # Quality තිබේ නම් පමණක්
+    quality_str = ", ".join(sorted(all_qualities)) if all_qualities else "N/A"
+    if quality_str != "N/A":
+        text += f"🎞️ ǫᴜᴀʟɪᴛʏ : <b>{quality_str}</b>\n"
+
+    # Audio/Language තිබේ නම් පමණක්
+    language_str = ", ".join(sorted(all_languages)) if all_languages else "N/A"
+    if language_str != "N/A":
+        text += f"🎧 ᴀᴜᴅɪᴏ : <b>{language_str}</b>\n"
+
+    # Rating තිබේ නම් පමණක්
+    rating = movie_doc.get("rating", "N/A")
+    if rating != "N/A":
+        text += f"🔥 ʀᴀᴛɪɴɢ : <b>{rating}</b>\n"
+
+    # Episodes (Series එකක් නම්)
     if episodes_by_season:
         episode_lines = []
         for season, episodes in sorted(episodes_by_season.items(), key=lambda x: int(x[0])):
             singles = []
             ranges = []
-
             for ep in episodes:
-                if "-" in ep:
-                    ranges.append(ep)
+                if "-" in ep: ranges.append(ep)
                 else:
-                    try:
-                        singles.append(int(ep))
-                    except ValueError:
-                        ranges.append(ep)
-
+                    try: singles.append(int(ep))
+                    except: ranges.append(ep)
             singles.sort()
             collapsed = []
             start = end = None
             for num in singles:
-                if start is None:
-                    start = end = num
-                elif num == end + 1:
-                    end = num
+                if start is None: start = end = num
+                elif num == end + 1: end = num
                 else:
                     collapsed.append(str(start) if start == end else f"{start}-{end}")
                     start = end = num
-            if start is not None:
-                collapsed.append(str(start) if start == end else f"{start}-{end}")
-
+            if start is not None: collapsed.append(str(start) if start == end else f"{start}-{end}")
             all_ep_parts = collapsed + sorted(ranges, key=lambda s: int(s.split("-")[0]))
             episode_lines.append(f"S{int(season)}: {', '.join(all_ep_parts)}")
-
+        
         epi_str = "\n".join(episode_lines)
         if epi_str:
-            epi_block = f"📺 ᴇᴘɪsᴏᴅᴇs : <b>\n{epi_str}</b>"
+            text += f"📺 ᴇᴘɪsᴏᴅᴇs : <b>\n{epi_str}</b>"
 
-    genres = movie_doc.get("genres", "N/A")
-    quality_str = ", ".join(sorted(all_qualities)) if all_qualities else "N/A"
-    language_str = ", ".join(sorted(all_languages)) if all_languages else "N/A"
-    ott_str = ", ".join(sorted(all_ott_platforms)) if all_ott_platforms else "N/A"
+    text += "</blockquote>\n"
+    text += f"🔍 <b>Sᴇᴀʀᴄʜ</b> → {temp.B_LINK}"
 
-    return script.MOVIE_UPDATE_NOTIFY_TXT.format(
-        poster_url=movie_doc.get("poster_url", ""),
-        imdb_url=movie_doc.get("imdb_url", ""),
-        filename=base_name,
-        tag=primary_tag,
-        genres=genres,
-        ott=ott_str,
-        quality=quality_str,
-        language=language_str,
-        episodes=epi_block,
-        rating=movie_doc.get("rating", "N/A"),
-        search_link=temp.B_LINK
-    )
+    return text
