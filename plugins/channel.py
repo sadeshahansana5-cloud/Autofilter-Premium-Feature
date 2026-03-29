@@ -446,9 +446,10 @@ def generate_movie_message(movie_doc, base_name):
     poster_url = movie_doc.get("poster_url", "")
     imdb_url = movie_doc.get("imdb_url", "")
     
-    # Title එකට IMDb link එක සහ Poster එක එකතු කිරීම
+    # Title එක සහ Poster එකට තිබුණු <a> tags (links) ඔක්කොම අයින් කරලා මෙහෙම දාන්න
     text = f"📥 <b>New {primary_tag} Added</b>\n\n"
-    text += f"<blockquote><a href='{poster_url}'>🎬</a> <a href='{imdb_url}'>✨ ᴛɪᴛʟᴇ : </a><code>{base_name}</code>\n\n"
+    text += f"<blockquote>✨ ᴛɪᴛʟᴇ : <code>{base_name}</code>\n\n"
+
 
     # Genres තිබේ නම් පමණක්
     genres = movie_doc.get("genres", "N/A")
