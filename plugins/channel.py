@@ -448,7 +448,7 @@ def generate_movie_message(movie_doc, base_name):
     
     # Title එක සහ Poster එකට තිබුණු <a> tags (links) ඔක්කොම අයින් කරලා මෙහෙම දාන්න
     text = f"📥 <b>New {primary_tag} Added</b>\n\n"
-    text += f"<blockquote>✨ ᴛɪᴛʟᴇ : <code>{base_name}</code>\n\n"
+    text += f"✨ ᴛɪᴛʟᴇ : {base_name}\n\n"
 
 
     # Genres තිබේ නම් පමණක්
@@ -504,7 +504,7 @@ def generate_movie_message(movie_doc, base_name):
         if epi_str:
             text += f"📺 ᴇᴘɪsᴏᴅᴇs : <b>\n{epi_str}</b>"
 
-    text += "</blockquote>\n"
+    text += "\n"
     text += f"🔍 <b>Sᴇᴀʀᴄʜ</b> → {temp.B_LINK}"
 
     return text
