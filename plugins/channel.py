@@ -418,7 +418,7 @@ async def update_movie_message(bot, base_name):
     except Exception as e:
         logger.error(f"Failed to update movie message: {e}")
 
- def generate_movie_message(movie_doc, base_name):
+def generate_movie_message(movie_doc, base_name):
     all_qualities = set()
     all_languages = set()
     all_ott_platforms = set()
